@@ -1,6 +1,6 @@
-with Ada.Text_IO;
-use Ada.Text_IO;
-
+with Ada.Text_IO; use Ada.Text_IO;
+with Ada.Strings; use Ada.Strings;
+with Ada.Strings.Fixed; use Ada.Strings.Fixed;
 
 procedure Mtt is
 x : Long_Integer := 0;
@@ -24,6 +24,6 @@ begin
 		end if;
 	end loop;
 
-	Put_Line(Long_Integer'Image(x));
+	Put_Line(Trim(Long_Integer'Image(x), Both));
 end Mtt;
 

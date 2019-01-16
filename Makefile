@@ -1,4 +1,4 @@
-all:	rust java c ada
+all:	rust java c ada go
 
 rust:	mtt.rs
 	rustc -O -o mtt_rust mtt.rs
@@ -16,10 +16,14 @@ ada:	mtt.adb
 	gnatmake -o mtt_ada -O3 mtt.adb
 	strip -s mtt_ada
 
-clean:
-	rm -f mtt_rust Mtt.class mtt_c mtt_ada mtt.ali mtt.o
+go:	mtt.go
+	go build -o mtt_go mtt.go
+	strip -s mtt_go
 
-test:	all
+clean:
+	rm -f mtt_rust Mtt.class mtt_c mtt_ada mtt.ali mtt.o mtt_go
+
+test_compiled:	all
 	time ./mtt_rust
 	bash -c "echo"
 	time ./mtt_c
@@ -28,12 +32,19 @@ test:	all
 	bash -c "echo"
 	time ./mtt_ada
 	bash -c "echo"
+	time ./mtt_go
+	bash -c "echo"
+
+test_interpreted:
 	time python3 mtt.py
 	bash -c "echo"
 	time python2 mtt.py
 	bash -c "echo"
 	time ruby mtt.rb
 	bash -c "echo"
+
+test:	test_compiled test_interpreted
+
 
 dependencies_rhel:
 	sudo yum install java-1.8.0-openjdk-devel rust python34
