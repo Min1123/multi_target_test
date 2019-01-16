@@ -42,6 +42,8 @@ test_interpreted:
 	bash -c "echo"
 	time ruby mtt.rb
 	bash -c "echo"
+	time lua mtt.lua
+	bash -c "echo"
 
 test:	test_compiled test_interpreted
 
