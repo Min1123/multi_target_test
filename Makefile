@@ -25,27 +25,22 @@ clean:
 
 test_compiled:	all
 	time ./mtt_rust
-	bash -c "echo"
 	time ./mtt_c
-	bash -c "echo"
 	time java Mtt
-	bash -c "echo"
 	time ./mtt_ada
-	bash -c "echo"
 	time ./mtt_go
-	bash -c "echo"
 
 test_interpreted:
 	time python3 mtt.py
-	bash -c "echo"
 	time python2 mtt.py
-	bash -c "echo"
 	time ruby mtt.rb
-	bash -c "echo"
 	time lua mtt.lua
-	bash -c "echo"
 
-test:	test_compiled test_interpreted
+test_jit:
+	time luajit mtt.lua
+	time pypy3 mtt.py
+
+test:	test_compiled test_interpreted test_jit
 
 
 dependencies_rhel:

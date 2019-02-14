@@ -15,6 +15,6 @@ fn main()
         x+=i;
     }
 
-    println!("{}\n",x);
+    println!("{}",x);
 }
 

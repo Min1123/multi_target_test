@@ -1,0 +1,9 @@
+*~
+*.o
+mtt_ada
+mtt_c
+Mtt.class
+mtt_go
+mtt.o
+mtt_rust
+mtt.ali
