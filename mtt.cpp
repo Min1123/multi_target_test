@@ -1,5 +1,5 @@
-#include <stdio.h>
-#include <stdint.h>
+#include <iostream>
+using namespace std;
 
 int main()
 {
@@ -15,6 +15,6 @@ int main()
 		x+=i;
 	}
 
-	printf("%llu\n",x);
+	cout << x << "\n";
 }
 

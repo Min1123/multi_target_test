@@ -2,6 +2,7 @@
 *.o
 mtt_ada
 mtt_c
+mtt_cpp
 Mtt.class
 mtt_go
 mtt.o

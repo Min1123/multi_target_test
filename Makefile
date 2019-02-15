@@ -1,4 +1,4 @@
-all:	rust java c ada go
+all:	rust java c cpp ada go
 
 rust:	mtt.rs
 	rustc -O -o mtt_rust mtt.rs
@@ -11,6 +11,10 @@ c:	mtt.c
 	gcc -O3 -o mtt_c mtt.c
 	strip -s mtt_c
 
+cpp:	mtt.cpp
+	g++ -O3 -o mtt_cpp mtt.cpp
+	strip -s mtt_cpp
+
 ada:	mtt.adb
 	rm -f mtt.ali
 	gnatmake -o mtt_ada -O3 mtt.adb
@@ -21,11 +25,12 @@ go:	mtt.go
 	strip -s mtt_go
 
 clean:
-	rm -f mtt_rust Mtt.class mtt_c mtt_ada mtt.ali mtt.o mtt_go
+	rm -f mtt_rust Mtt.class mtt_c mtt_ada mtt.ali mtt.o mtt_go mtt_cpp
 
 test_compiled:	all
 	time ./mtt_rust
 	time ./mtt_c
+	time ./mtt_cpp
 	time java Mtt
 	time ./mtt_ada
 	time ./mtt_go
@@ -35,6 +40,8 @@ test_interpreted:
 	time python2 mtt.py
 	time ruby mtt.rb
 	time lua mtt.lua
+	time perl mtt.pl
+	time perl6 mtt.pl6
 
 test_jit:
 	time luajit mtt.lua
