@@ -1,4 +1,4 @@
-all:	rust java c cpp ada go
+all:	rust java c cpp ada go c_sharp
 
 rust:	mtt.rs
 	rustc -O -o mtt_rust mtt.rs
@@ -24,8 +24,11 @@ go:	mtt.go
 	go build -o mtt_go mtt.go
 	strip -s mtt_go
 
+c_sharp: Mtt.cs
+	mcs Mtt.cs
+
 clean:
-	rm -f mtt_rust Mtt.class mtt_c mtt_ada mtt.ali mtt.o mtt_go mtt_cpp
+	rm -f mtt_rust Mtt.class mtt_c mtt_ada mtt.ali mtt.o mtt_go mtt_cpp Mtt.exe
 
 test_compiled:	all
 	time ./mtt_rust
@@ -34,6 +37,7 @@ test_compiled:	all
 	time java Mtt
 	time ./mtt_ada
 	time ./mtt_go
+	time mono Mtt.exe
 
 test_interpreted:
 	time python3 mtt.py
