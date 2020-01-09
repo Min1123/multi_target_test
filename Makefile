@@ -27,8 +27,11 @@ go:	mtt.go
 c_sharp: Mtt.cs
 	mcs Mtt.cs
 
+zig:	mtt.zig
+	zig build-exe mtt.zig --release-small --strip --name mtt_zig
+
 clean:
-	rm -f mtt_rust Mtt.class mtt_c mtt_ada mtt.ali mtt.o mtt_go mtt_cpp Mtt.exe
+	rm -f mtt_rust Mtt.class mtt_c mtt_ada mtt.ali mtt.o mtt_go mtt_cpp Mtt.exe mtt_zig
 
 test_compiled:	all
 	time ./mtt_rust
@@ -38,6 +41,7 @@ test_compiled:	all
 	time ./mtt_ada
 	time ./mtt_go
 	time mono Mtt.exe
+	time ./mtt_zig
 
 test_interpreted:
 	time python3 mtt.py
