@@ -1,22 +1,20 @@
-const warn = @import("std").debug.warn;
+const std = @import("std");
 
-pub fn main() void {
-
+pub fn main() !void {
     var x: u64 = 0;
     var i: u64 = 1;
 
-    while (i < 350000001) : (i+=1) {
-        if ((i%3)==0)
-        {
+    const stdout = std.io.getStdOut().writer();
+
+    while (i < 350000001) : (i += 1) {
+        if ((i % 3) == 0) {
             continue;
         }
-        if ((i%2)==0)
-        {
+        if ((i % 2) == 0) {
             continue;
         }
-        x+=i;
+        x += i;
     }
 
-    warn("{}\n", x);
+    try stdout.print("{d}\n", .{x});
 }
-
