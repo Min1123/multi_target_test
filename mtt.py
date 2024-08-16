@@ -1,22 +1,19 @@
 #!/usr/bin/env python3
+#import datetime
+import time
 
-import sys
-
-x=0
-if sys.version_info.major > 2:
+def run() -> str:
+    start_time = time.time_ns()
+    x=0
     for i in range(1,350000001):
-        if((i%3)==0):
+        if i%3 == 0:
             continue
-        if((i%2)==0):
-            continue
-        x+=i
-else:
-    for i in xrange(1,350000001):
-        if((i%3)==0):
-            continue
-        if((i%2)==0):
+        if i%2 == 0:
             continue
         x+=i
+    end_time = time.time_ns()
+    return f'{x}, {end_time - start_time}'
 
-print(x)
+
+print(run())
 
