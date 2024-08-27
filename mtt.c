@@ -14,7 +14,7 @@ char *run()
 	uint64_t x=0;
 	int i;
 
-	clock_gettime(CLOCK_REALTIME, &start_time);
+	clock_gettime(CLOCK_MONOTONIC_COARSE, &start_time);
 
 	for(i=1; i<350000001; i++)
 	{
@@ -24,16 +24,16 @@ char *run()
 			continue;
 		x+=i;
 	}
-	clock_gettime(CLOCK_REALTIME, &end_time);
+	clock_gettime(CLOCK_MONOTONIC_COARSE, &end_time);
 
 	out_time_delta = (end_time.tv_nsec - start_time.tv_nsec)/(1000.0*1000.0*1000.0);
 
-	if(out_time_delta < 0)
+	if (out_time_delta < 0)
 	{
-		exit(-1);
+		return "Failed to have positive time.\n";
 	}
 
-	snprintf(output, 200, "%llu, %f\n", x, out_time_delta);
+	snprintf(output, 120, "%llu, %f\n", x, out_time_delta);
 
 	return output;
 }
