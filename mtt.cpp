@@ -3,6 +3,11 @@
 #include <iostream>
 #include <string>
 
+#ifdef PICO_BUILD
+#include "pico/stdlib.h"
+#include <cstdio>
+#endif
+
 std::string run() {
 	uint64_t x=0;
 	int i;
@@ -34,6 +39,10 @@ std::string run() {
 }
 
 int main() {
+	#ifdef PICO_BUILD
+	stdio_init_all();
+	#endif
+
 	std::cout << run() << "\n";
 
 	return 0;

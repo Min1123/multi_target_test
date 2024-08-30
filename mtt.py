@@ -12,7 +12,7 @@ def run() -> str:
             continue
         x+=i
     end_time = time.time_ns()
-    return f'{x}, {end_time - start_time}'
+    return f'{x}, {(end_time - start_time)/1000**3}'
 
 
 print(run())
