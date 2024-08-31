@@ -14,9 +14,7 @@ std::string run() {
 	double time_delta;
 	std::string output;
 
-	auto start = std::chrono::system_clock::now();
-
-
+	auto start_time = std::chrono::system_clock::now();
 
 	for(i=1; i<350000001; i++) {
 		if((i%3)==0)
@@ -26,10 +24,10 @@ std::string run() {
 		x+=i;
 	}
 	
-	auto stop = std::chrono::system_clock::now();
+	auto end_time = std::chrono::system_clock::now();
 
-	auto stop_nanos = std::chrono::duration_cast<std::chrono::nanoseconds>(stop.time_since_epoch());
-	auto start_nanos = std::chrono::duration_cast<std::chrono::nanoseconds>(start.time_since_epoch());
+	auto stop_nanos = std::chrono::duration_cast<std::chrono::nanoseconds>(end_time.time_since_epoch());
+	auto start_nanos = std::chrono::duration_cast<std::chrono::nanoseconds>(start_time.time_since_epoch());
 
 	time_delta = (stop_nanos.count() - start_nanos.count())/1000.0/1000.0/1000.0;
 

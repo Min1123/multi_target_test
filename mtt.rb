@@ -1,17 +1,27 @@
 #!/usr/bin/env ruby
 
-x=0
+def run()
+  x=0
 
-(1..350000001).each do |i| 
-  if((i%3)==0)
-    next
-  end
-  if((i%2)==0)
-    next
+  start_time = Time.now()
+
+  (1..350000001).each do |i|
+    if((i%3)==0)
+      next
+    end
+    if((i%2)==0)
+      next
+    end
+
+    x+=i
   end
 
-  x+=i
+  end_time = Time.now()
+
+  etnorm = (end_time - start_time).truncate(6).to_s()
+
+  return x.to_s() + ", " + etnorm
 end
 
-puts(x)
+puts(run())
 
