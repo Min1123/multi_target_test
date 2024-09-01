@@ -2,42 +2,31 @@ package main
 
 import (
 	"fmt"
+	"time"
 )
 
-func main() {
+func run() string {
 	var x int = 0
 
-	for i := 1; i<350000001; i++ {
-		if((i%3)==0) {
+	start_time := time.Now()
+
+	for i := 1; i < 350000001; i++ {
+		if (i % 3) == 0 {
 			continue
 		}
-		if((i%2)==0) {
+		if (i % 2) == 0 {
 			continue
 		}
-		x+=i;
+		x += i
 	}
 
-	fmt.Println(x)
+	end_time := float64((time.Now().Sub(start_time)).Nanoseconds()) / (1000.0 * 1000.0 * 1000.0)
+
+	output := fmt.Sprintf("%d, %0.6f", x, end_time)
+
+	return output
 }
 
-
-/*
-#include <stdio.h>
-
-int main()
-{
-	unsigned long long x=0;
-	int i;
-
-	for(i=1; i<350000001; i++)
-	{
-		if((i%3)==0)
-			continue;
-		if((i%2)==0)
-			continue;
-		x+=i;
-	}
-
-	printf("%llu\n",x);
+func main() {
+	fmt.Println(run())
 }
-*/
